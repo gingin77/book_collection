@@ -11,11 +11,14 @@ const bookSchema = new mongoose.Schema({
       enum: ["fiction", "non-fiction"]
     },
     mostAwesomeThing: {type: String },
-    deweyDecimalClass: { type: String },
-    deweyDecimalNumber: { type: Number },
+    readStatus: {
+      type: String ,
+      enum: ["have read cover-to-cover", "have skimmed", "have started", "plan to read someday", "in the bedside table stack"]
+    },
     genre: { type: String},
+    subject: {type: String},
     physicalProps: [{
-      pages: { type: Number },
+      // pages: { type: Number },
       cover: {
         type: String,
         enum: ["hardcover", "paperback", "other"]
@@ -29,6 +32,6 @@ const bookSchema = new mongoose.Schema({
     }]
 })
 
-const Books = mongoose.model('Books', bookSchema);
+const Book = mongoose.model('Book', bookSchema);
 
-module.exports = Books;
+module.exports = Book

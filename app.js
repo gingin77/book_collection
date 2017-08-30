@@ -1,33 +1,58 @@
-Using your schema, build an Express app that lets you view your collection, add to your collection, edit items in your collection, and delete items from your collection.
+const express = require('express')
+const mustacheExpress = require('mustache-express')
+const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
+const path = require('path')
 
-When dealing with arrays, think about how you might make this user interface work. If it makes sense, write some client-side JavaScript to help add new items to your array on your create and update item pages. You can make your JavaScript available with express.static.
+const Book = require("./models/books")
 
-To deal with nested data in forms, consult the docs for the extended option in body-parser and the qs library that body-parser uses.
+const mongoURL = 'mongodb://localhost:27017/books'
+mongoose.connect(mongoURL, {useMongoClient: true})
+mongoose.Promise = require('bluebird')
 
-const express = require('express');
-const mustacheExpress = require('mustache-express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const app = express()
 
-const Books = require("./models/books");
+app.use(bodyParser.urlencoded({ extended: true }))
 
-const mongoURL = 'mongodb://localhost:27017/books';
-mongoose.connect(mongoURL, {useMongoClient: true});
-mongoose.Promise = require('bluebird');
-
-const app = express();
-
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.engine('mustache', mustacheExpress());
-app.set('views', path.join(__dirname, 'views'));
+app.engine('mustache', mustacheExpress())
+app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'mustache')
 
-app.use('/static', express.static('static'));
+app.use('/static', express.static('static'))
+
+// app.post('/', function(req, res){
+//
+// })
+
+// Create an instance of model SomeModel
+
+// var new_instance = new Book({ title: 'The History of Love' });
+//
+// // Save the new model instance, passing a callback
+// awesome_instance.save(function (err) {
+//   if (err) return handleError(err);
+//   // saved!
+// })
 
 
+Book.create({  title: 'The History of Love' }, function (err, awesome_instance) {
+  if (err) return handleError(err);
+  console.log("the book create function ran");
+  // saved!
+});
 
+app.get('/:id/', function (req, res) {
+  Recipe.findOne({_id: req.params.id}).then(function (book) {
+    res.send({Book});
+  })
+})
+
+app.get('/', function(req,res){
+  Book.find().then(function(book){
+    res.render('index', {book: book})
+  })
+})
 
 app.listen(3000, function () {
-    console.log('Express running on http://localhost:3000/.')
+    console.log('Success!!! Your app initiated!!!')
 });

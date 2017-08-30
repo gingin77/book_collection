@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Book Collection</title>
+</head>
+
+<body>
+  <h1>Books in Inventory</h1>
+
+  <p>
+    <a href="/new_book/">Add a new book record to the database</a>
+  </p>
+  {{#books}}
+    <h2>{{title}}</h2>
+    <h3>{{author.last}}, {{author.first}}</h3>
+    <h3>{{category}}</h3>
+    <h3>{{genre}}</h3>
+    <h2>For shelving and packing purposes, list the physical properties of the book:</h2>
+    <dl>{{#cover}}
+      <dt>
+        Cover-type
+      </dt>
+      <dd>
+        {{.}}
+      </dd>
+      <dt>
+        Spine Width
+      </dt>
+      <dd>
+        {{.}}
+      </dd>
+      <dt>
+        Spine Height
+      </dt>
+      <dd>
+        {{.}}
+      </dd>
+      <dt>
+        Cover Appearance
+        <dt>
+          Color scheme:
+        </dt>
+        <dd>
+          {{.}}
+        </dd>
+        <dt>
+          Image(s):
+        </dt>
+        <dd>
+          {{.}}
+        </dd>
+      </dt>
+    </dl>
+    {{/cover}}
+  {{/books}}
+</body>
+
+</html>
