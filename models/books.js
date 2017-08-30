@@ -6,10 +6,11 @@ const bookSchema = new mongoose.Schema({
       last: { type: String },
       first: { type: String }
     }],
-    Category: {
+    category: {
       type: String ,
       enum: ["fiction", "non-fiction"]
     },
+    mostAwesomeThing: {type: String },
     deweyDecimalClass: { type: String },
     deweyDecimalNumber: { type: Number },
     genre: { type: String},
