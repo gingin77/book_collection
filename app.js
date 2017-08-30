@@ -26,26 +26,15 @@ app.use('/static', express.static('static'))
 
 // Create an instance of model SomeModel
 
-// var new_instance = new Book({ title: 'The History of Love' });
-//
-// // Save the new model instance, passing a callback
-// awesome_instance.save(function (err) {
-//   if (err) return handleError(err);
-//   // saved!
+
+
+
+
+// app.get('/:id/', function (req, res) {
+//   Recipe.findOne({_id: req.params.id}).then(function (book) {
+//     res.send({Book});
+//   })
 // })
-
-
-Book.create({  title: 'The History of Love' }, function (err, awesome_instance) {
-  if (err) return handleError(err);
-  console.log("the book create function ran");
-  // saved!
-});
-
-app.get('/:id/', function (req, res) {
-  Recipe.findOne({_id: req.params.id}).then(function (book) {
-    res.send({Book});
-  })
-})
 
 app.get('/', function(req,res){
   Book.find().then(function(book){
@@ -56,3 +45,12 @@ app.get('/', function(req,res){
 app.listen(3000, function () {
     console.log('Success!!! Your app initiated!!!')
 });
+
+
+
+// the code below did add a book to the collection
+// Book.create({  title: 'The History of Love' }, function (err, awesome_instance) {
+//   if (err) return handleError(err);
+//   console.log("the book create function ran");
+//   // saved!
+// });

@@ -12,12 +12,16 @@
   <p>
     <a href="/new_book/">Add a new book record to the database</a>
   </p>
-  {{#books}}
+
+  {{#book}}
     <h2>{{title}}</h2>
     <h3>{{author.last}}, {{author.first}}</h3>
     <h3>{{category}}</h3>
     <h3>{{genre}}</h3>
-    <h2>For shelving and packing purposes, list the physical properties of the book:</h2>
+    <h3>Why is it special?</h3>
+    <h4>{{whyIKeepIt}}</h4>
+
+    <h3>For shelving and packing purposes, list the physical properties of the book:</h3>
     <dl>{{#cover}}
       <dt>
         Cover-type
@@ -54,7 +58,7 @@
       </dt>
     </dl>
     {{/cover}}
-  {{/books}}
+  {{/book}}
 </body>
 
 </html>
