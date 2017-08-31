@@ -18,10 +18,12 @@ const bookSchema = new mongoose.Schema({
     // "number": {type: Number}
   }],
   whyIKeepIt: { type: String, required: true },
+
   readStatus: {
     type: String,
     enum: ["have-read-cover-to-cover", "have-skimmed", "have-read-specific-parts-that-can-stand-alone", "in-the-stack-on-my-bedside-table", "plan-to-read-someday"]
   },
+  
   genre: {type: String }
   // categories for non-fiction
 })
