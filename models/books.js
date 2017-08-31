@@ -13,28 +13,17 @@ const bookSchema = new mongoose.Schema({
     type: String,
     enum: ["fiction", "non-fiction"]
   },
+  deweyDecimalSystemInfo: [{
+    "subjectClassification": {type: String},
+    // "number": {type: Number}
+  }],
   whyIKeepIt: { type: String, required: true },
   readStatus: {
     type: String,
-    enum: ["have read cover-to-cover", "have skimmed", "have started", "plan to read someday", "in the bedside table stack"]
+    enum: ["have-read-cover-to-cover", "have-skimmed", "have-read-specific-parts-that-can-stand-alone", "in-the-stack-on-my-bedside-table", "plan-to-read-someday"]
   },
-  genre: {type: String },
-  physicalProps: [{
-    pages: { type: Number },
-    cover_type: {
-      type: String,
-      enum: ["hardcover", "paperback", "other"]
-    },
-    coverAppearance: [{
-        color: { type: String },
-        image: { type: String }
-      }]
-  }],
+  genre: {type: String }
   // categories for non-fiction
-  deweyDecimalSystemInfo: [{
-    "subjectClassification": {type: String},
-    "number": {type: Number}
-  }]
 })
 
 const Book = mongoose.model('Book', bookSchema);
@@ -70,3 +59,15 @@ module.exports = Book
     // height: {
     //   type: Number
     // },
+
+    // physicalProps: [{
+    //   pages: { type: Number },
+    //   cover_type: {
+    //     type: String,
+    //     enum: ["hardcover", "paperback", "other"]
+    //   },
+    //   coverAppearance: [{
+    //       color: { type: String },
+    //       image: { type: String }
+    //     }]
+    // }],

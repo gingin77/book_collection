@@ -5,36 +5,48 @@ const bodyParser = require('body-parser')
 const path = require('path')
 
 const Book = require("./models/books")
+const duplicateError = 11000;
 
 const mongoURL = 'mongodb://localhost:27017/books'
 mongoose.connect(mongoURL, {useMongoClient: true})
 mongoose.Promise = require('bluebird')
 
 const app = express()
+app.engine('mustache', mustacheExpress())
+app.set('view engine', 'mustache')
+app.set('views', './views')
 
+app.use(express.static(__dirname + '/public'))
+app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.engine('mustache', mustacheExpress())
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'mustache')
+app.get('/new/', function (req, res) {
+  res.render('new_book_form')
+})
 
-app.use('/static', express.static('static'))
+app.post('/new/', function(req, res){
+  Book.create(req.body)
+  .then(function (book) {
+    res.redirect('/');
+  })
+  .catch(function (error) {
+    let errorMsg;
+    if (error.code === duplicateError) {
+      errorMsg = `"${req.body.title}" has already been entered.`
+    } else {
+      errorMsg = "You have encountered an unknown error."
+    }
+    res.render('new_recipe', {errorMsg: errorMsg});
+  })
+})
 
-// app.post('/', function(req, res){
-//
-// })
+app.get('/:title', function(req, res){
 
-// Create an instance of model SomeModel
-
-
-
-
-
-// app.get('/:id/', function (req, res) {
-//   Recipe.findOne({_id: req.params.id}).then(function (book) {
-//     res.send({Book});
-//   })
-// })
+  Book.remove({ size: 'large' }, function (err) {
+  if (err) return handleError(err);
+  // removed!
+});
+})
 
 app.get('/', function(req,res){
   Book.find().then(function(book){

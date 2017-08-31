@@ -1,28 +1,50 @@
-<h2>Add new books</h2>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>New Book Form</title>
+  <link rel="stylesheet" href="https://cdn.shoelace.style/1.0.0-beta22/shoelace.css">
+  <link rel="stylesheet" type="text/css" href="/styles.css" />
 
 
-<form action="/new/" method="POST">
-  <p>
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required />
-  </p>
+</head>
 
-  <p>
-    <label for="source">Source:</label>
-    <input type="text" id="source" name="source" />
-  </p>
+<body>
+  <section>
+  <h2>Add a new book</h2>
+  <form action="/new/" method="POST">
+    <p>
+      <label for="title">Title:</label>
+      <input class="italics" type="text" id="title" name="title" required />
+    </p>
+    <p>
+      <label for="author">Author:</label>
+      <input type="text" id="author_first" name="author.first" placeholder="First name" />
+      <input type="text" id="author_first" name="author.last" placeholder="Last name" />
+    </p>
+    <p>
+      Have read? Want to read?
+    </p>
+      <select name="readStatus">
+        <option value="have-read-cover-to-cover">Have read cover to cover</option>
+        <option value="have-skimmed">Have skimmed through parts</option>
+        <option value="have-read-specific-parts-that-can-stand-alone">Have read specific parts that can stand alone</option>
+        <option value="in-the-stack-on-my-bedside-table">In the stack on my bedside table</option>
+        <option value="plan-to-read-someday">Plan to read someday</option>
+      </select>
+    <p>
+      <label for="whyIKeepIt">Why is this book special?</label>
+    </br>
+      <textarea cols="50" rows="3" id="whyIKeepIt" name="whyIKeepIt" placeholder="Leave a comment to share what makes this book memorable.">
+      </textarea>
+    </p>
+    <p>
+      <button type="submit">Save this record</button>
+    </p>
+  </form>
+  </section>
+  <script src="https://cdn.shoelace.style/1.0.0-beta22/shoelace.js"></script>
+</body>
 
-  <p>
-    <label for="prepTime">Prep time:</label>
-    <input type="number" id="prepTime" name="prepTime" />
-  </p>
-
-  <p>
-    <label for="cookTime">Cook time:</label>
-    <input type="number" id="cookTime" name="cookTime" />
-  </p>
-
-  <p>
-    <button type="submit">Add recipe</button>
-  </p>
-</form>
+</html>
