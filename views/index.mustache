@@ -15,7 +15,7 @@
   </p>
   {{#book}}
     <div>
-      <h2><span class="italics"><strong><em><a href="/{{title}}/">{{title}}</a></em><strong></span> by {{author.first}} {{author.last}} {{#pages}}({{pages}} pages){{/pages}}</h2>
+      <h2><span class="italics"><strong><em><a href="/{{_id}}/">{{title}}</a></em><strong></span> by {{author.first}} {{author.last}} {{#pages}}({{pages}} pages){{/pages}}</h2>
       <h3>{{category}}{{#genre}}, {{genre}}{{/genre}}</h3>
       {{#deweyDecimalSystemInfo}}
         <h3>Dewey Decimal Subject Classification: {{deweyDecimalSystemInfo.subjectClassification}}

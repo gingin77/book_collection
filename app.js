@@ -12,13 +12,18 @@ mongoose.connect(mongoURL, {useMongoClient: true})
 mongoose.Promise = require('bluebird')
 
 const app = express()
+
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+
 app.engine('mustache', mustacheExpress())
 app.set('view engine', 'mustache')
 app.set('views', './views')
 
+// app.use('/public', express.static('public'))
 app.use(express.static(__dirname + '/public'))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+
+
 
 app.get('/new/', function (req, res) {
   res.render('new_book_form')
@@ -36,33 +41,45 @@ app.post('/new/', function(req, res){
     } else {
       errorMsg = "You have encountered an unknown error."
     }
-    res.render('new_recipe', {errorMsg: errorMsg});
-  })
-})
-
-app.get('/:title', function (req, res) {
-  Book.findOne({title: req.params.title}).then(function (book) {
-      res.render('individual', {book: book})
+    res.render('index', {errorMsg: errorMsg});
   })
 })
 
 
-// app.get('/:id/', function (req, res) {
-//   Book.findOne({id: req.params.id}).then(function (book) {
-//     res.render('individual', {book: book})
-//   })
-// })
+app.get('/:id', function (req, res) {
+  Book.findOne({_id: req.params.id}).then(function (book) {
+    res.render('individual', {book: book})
+  })
+})
 
+
+app.post('/:id/delete', function(req,res){
+  Book.findOneAndRemove({_id:req.params.id}).then(function(book){
+    res.redirect('/');
+  })
+});
 // app.post('/:id/delete', function (req, res) {
-//   res.send(req.params.title)
-//   res.send(req.params.id)
-//   Book.findOneAndRemove({_title: req.params.title}).then(function (book) {
-//     res.redirect('/')
-//   })
+//   console.log(req.params.id)
+//   Book.findByIdAndRemove(req.params.id, (err, book) => {
+//       // We'll create a simple object to send back with a message and the id of the document that was removed
+//       // You can really do this however you want, though.
+//       let response = {
+//           message: "Book successfully deleted",
+//           id: book._id
+//       }
+//       res.status(200).send(response)
+//   });
+//   // Book.findOneAndRemove({_id: req.params.id}).then(function (book) {
+//   //   res.redirect('/')
+//   // })
 // })
+
+
+
 
 app.get('/', function(req,res){
   Book.find().then(function(book){
+    console.log(book);
     res.render('index', {book: book})
   })
 })

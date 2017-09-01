@@ -23,14 +23,14 @@ const bookSchema = new mongoose.Schema({
     type: String,
     enum: ["have-read-cover-to-cover", "have-skimmed", "have-read-specific-parts-that-can-stand-alone", "in-the-stack-on-my-bedside-table", "plan-to-read-someday"]
   },
-  
+
   genre: {type: String }
   // categories for non-fiction
 })
 
 const Book = mongoose.model('Book', bookSchema);
 
-module.exports = Book
+module.exports = Book;
 
 
 
