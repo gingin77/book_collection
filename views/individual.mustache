@@ -43,9 +43,9 @@
   </br>
       </br>
   {{/book}}
-  
-  <form>
-      <button href="/">Delete this record</button>
+
+  <form action="/{{_id}}/delete" method="post">
+      <button href="/" type="submit" name="button">Delete this record</button>
   </form>
 
 

@@ -40,34 +40,38 @@ app.post('/new/', function(req, res){
   })
 })
 
-// app.get('/:id/', function (req, res) {
-//   Recipe.findOne({_id: req.params.id}).then(function (recipe) {
-//     res.render("recipe", {recipe: recipe});
-//   })
-// })
-
 app.get('/:title', function (req, res) {
-  Book.findOne({_title: req.params.title}).then(function (book) {
-      res.render("individual", {book: book})
+  Book.findOne({title: req.params.title}).then(function (book) {
+      res.render('individual', {book: book})
   })
 })
 
-// what I want to do is have a delete button at the bottom of a record that allows user to delete AND/OR have a checkbox on the index page, which allows user to select records to delete.
-// app.get('/:title', function(req, res){
-//   // Book.findOne().then(function(recipe) {
-//   //     req.recipe = recipe;
-//
-//   Book.deleteOne({_title: req.params.title}, function (book) {
-//       req.book = book;
+
+// app.get('/:id/', function (req, res) {
+//   Book.findOne({id: req.params.id}).then(function (book) {
+//     res.render('individual', {book: book})
 //   })
 // })
 
+// app.post('/:id/delete', function (req, res) {
+//   res.send(req.params.title)
+//   res.send(req.params.id)
+//   Book.findOneAndRemove({_title: req.params.title}).then(function (book) {
+//     res.redirect('/')
+//   })
+// })
 
 app.get('/', function(req,res){
   Book.find().then(function(book){
     res.render('index', {book: book})
   })
 })
+
+// what I want to do is have a delete button at the bottom of a record that allows user to delete AND/OR have a checkbox on the index page, which allows user to select records to delete.
+
+
+
+
 
 app.listen(3000, function () {
     console.log('Success!!! Your app initiated!!!')
