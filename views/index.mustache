@@ -13,36 +13,43 @@
   <p>
     <a href="/new/">Add a new record to your personal library</a>
   </p>
-  {{#book}}
-    <div>
-      <h2><span class="italics"><strong><em><a href="/{{_id}}/">{{title}}</a></em><strong></span> by {{author.first}} {{author.last}} {{#pages}}({{pages}} pages){{/pages}}</h2>
-      <h3>{{category}}{{#genre}}, {{genre}}{{/genre}}</h3>
-      {{#deweyDecimalSystemInfo}}
-        <h3>Dewey Decimal Subject Classification: {{deweyDecimalSystemInfo.subjectClassification}}
-      </h3>
-      {{/deweyDecimalSystemInfo}}
-      <h3>{{readStatus}}</h3>
-      </br>
-      <h3><strong>Why is this book special?</strong></h3>
-      <blockquote>{{whyIKeepIt}}</blockquote>
+  <div>
+    {{#book}}
+      <div>
+        <h2><span class="italics"><strong><em><a href="/{{_id}}/">{{title}}</a></em><strong></span> by {{author.first}} {{author.last}} {{#pages}}({{pages}} pages){{/pages}}</h2>
+        <h3>{{category}}{{#genre}}, {{genre}}{{/genre}}{{#deweyDecimalClassification}}, {{deweyDecimalClassification}}{{/deweyDecimalClassification}}</h3>
+        {{#deweyDecimalSystemInfo}}
+          <h3>Dewey Decimal Subject Classification: {{deweyDecimalSystemInfo.subjectClassification}}
+        </h3>
+        {{/deweyDecimalSystemInfo}}
+        <h3>{{readStatus}}</h3>
+        </br>
+        <h3><strong>Why is this book special?</strong></h3>
+        <blockquote>{{whyIKeepIt}}</blockquote>
 
-      {{#physicalProps}}
-        <h3 class="indent">Appearance</h4>
-          <ul class="indent">
-            <li class="indent">
-            Cover: {{cover_type}}
-            </li class="indent">
-            {{#coverAppearance}}
-            <li class="indent">
-            Visual associations: {{color}} {{image}}
-            </li>
-            {{/coverAppearance}}
-      </ul>
-      {{/physicalProps}}
-    </div>
-  </br>
-      </br>
-  {{/book}}
+        {{#physicalProps}}
+          <h3 class="indent">Appearance</h4>
+            <ul class="indent">
+              <li class="indent">
+              Cover: {{cover_type}}
+              </li class="indent">
+              {{#coverAppearance}}
+              <li class="indent">
+              Visual associations: {{color}} {{image}}
+              </li>
+              {{/coverAppearance}}
+            </ul>
+        {{/physicalProps}}
+          <!-- <form action="/{{_id}}/edit" method="POST">
+          <button type="submit">Delete this record</button>
+          </form> -->
+          <a href='/{{_id}}/edit'>Edit this record</a>
+      </div>
+        </br>
+        </br>
+    {{/book}}
+
+  </div>
 
   <script src="https://cdn.shoelace.style/1.0.0-beta22/shoelace.js"></script>
 </body>

@@ -45,35 +45,84 @@ app.post('/new/', function(req, res){
   })
 })
 
-
 app.get('/:id', function (req, res) {
   Book.findOne({_id: req.params.id}).then(function (book) {
     res.render('individual', {book: book})
   })
 })
 
-
 app.post('/:id/delete', function(req,res){
   Book.findOneAndRemove({_id:req.params.id}).then(function(book){
     res.redirect('/');
   })
 });
-// app.post('/:id/delete', function (req, res) {
-//   console.log(req.params.id)
-//   Book.findByIdAndRemove(req.params.id, (err, book) => {
-//       // We'll create a simple object to send back with a message and the id of the document that was removed
-//       // You can really do this however you want, though.
-//       let response = {
-//           message: "Book successfully deleted",
-//           id: book._id
-//       }
-//       res.status(200).send(response)
-//   });
-//   // Book.findOneAndRemove({_id: req.params.id}).then(function (book) {
-//   //   res.redirect('/')
-//   // })
-// })
 
+// UPDATE PET PROFILE
+app.get('/:id/update/', function (req, res) {
+  Pet.findOne({_id: req.params.id}).then(function (pet) {
+    res.render("update_pet_profile", {pet: pet});
+  })
+});
+
+app.post('/:id/update/', function (req, res) {
+  console.log(req.body);
+  Pet.findOneAndUpdate({_id: req.params.id}, req.body).then(function (pet) {
+    console.log(req.body);
+    // pet.body.push(req.body);
+    // pet.save().then(function () {
+        res.redirect("/");
+  })
+})
+
+app.get('/:id/edit', function (req, res) {
+  Book.findOne({_id: req.params.id}).then(function (book) {
+    // addIndexToIngredients(recipe);
+    res.render('edit_book', {book: book})
+  })
+    // const book = req.book
+    // console.log(JSON.stringify(book.getFormData()));
+
+    // , {
+    //     book: book,
+    //     // fields: book.getFormData(),
+    //     // nextIngIndex: recipe.ingredients.length
+    // });
+})
+
+app.post("/:id/edit", function(req, res) {
+    const book = req.book;
+    book.name = req.body.title;
+    book.authorLast = req.body.author.last;
+    book.authorFirst = req.body.author.first;
+    book.category = req.body.category;
+    book.whyIKeepIt = req.body.whyIKeepIt;
+    book.readStatus = req.body.readStatus;
+
+    book.save();
+        res.redirect(`/${_id}/`);
+
+    // const ingredients = (req.body.ingredients || []).filter(function(ingredient) {
+    //     return (ingredient.amount || ingredient.measure || ingredient.ingredient)
+    // });
+
+    // book.author = ingredients;
+    //
+    // const error = recipe.validateSync();
+    //
+    // if (error) {
+    //     addIndexToIngredients(book);
+    //     console.log(error.errors);
+    //     res.render("edit_book", {
+    //         book: book,
+    //         fields: book.getFormData(),
+    //         nextIngIndex: book.ingredients.length,
+    //         errors: error.errors
+    //     });
+    // } else {
+    //     book.save();
+    //     res.redirect(`/${book._id}/`);
+    // }
+})
 
 
 

@@ -6,27 +6,72 @@ const bookSchema = new mongoose.Schema({
     required: true
   },
   author: {
-    last: {type: String },
-    first: { type: String }
+    last: {
+      type: String
+    },
+    first: {
+      type: String
+    }
   },
   category: {
     type: String,
     enum: ["fiction", "non-fiction"]
   },
-  deweyDecimalSystemInfo: [{
-    "subjectClassification": {type: String},
-    // "number": {type: Number}
-  }],
-  whyIKeepIt: { type: String, required: true },
+  genre: {
+    type: String,
+    enum: ["Novel", "Romance", "Comedy", "Suspense/Thriller", "Horror", "Mystery", "Sci-Fi", "Western", "Classic", "Mythology"]
+  },
+  deweyDecimalClassification: {
+    type: String,
+    enum: ["Essays", "Philosophy", "Religion", "Social sciences", "Language", "Science", "Technology", "Arts/Recreation", "Biography", "History/Geography"]
+  },
+  whyIKeepIt: {
+    type: String,
+    required: true
+  },
 
   readStatus: {
     type: String,
     enum: ["have-read-cover-to-cover", "have-skimmed", "have-read-specific-parts-that-can-stand-alone", "in-the-stack-on-my-bedside-table", "plan-to-read-someday"]
   },
-
-  genre: {type: String }
-  // categories for non-fiction
+  physicalProps: [{
+    pages: {
+      type: Number
+    },
+    cover_type: {
+      type: String,
+      enum: ["hardcover", "paperback", "other"]
+    },
+    coverAppearance: [{
+      color: {
+        type: String
+      },
+      image: {
+        type: String
+      }
+    }]
+  }]
 })
+
+// Book.methods.getFormData = function() {
+//   const fields = [
+//     {
+//       name: 'title',
+//       label: 'Title'
+//     },
+//       // name: 'author',
+//       // label: 'Author'
+//       // nested: []
+//       //
+//     {
+//       name: 'author.first',
+//       label: 'author.first'
+//     },
+//     {
+//       name: 'author.last',
+//       label: 'author.last'
+//     }]
+// }
 
 const Book = mongoose.model('Book', bookSchema);
 
@@ -55,21 +100,9 @@ module.exports = Book;
 
 
 
-    // spineWidth: {
-    //   type: Number
-    // },
-    // height: {
-    //   type: Number
-    // },
-
-    // physicalProps: [{
-    //   pages: { type: Number },
-    //   cover_type: {
-    //     type: String,
-    //     enum: ["hardcover", "paperback", "other"]
-    //   },
-    //   coverAppearance: [{
-    //       color: { type: String },
-    //       image: { type: String }
-    //     }]
-    // }],
+// spineWidth: {
+//   type: Number
+// },
+// height: {
+//   type: Number
+// },

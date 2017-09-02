@@ -11,7 +11,7 @@
 <body>
   <section>
   <h2>Add a new book</h2>
-  <form action="/new/" method="POST">
+  <form action="/new/" method="POST" class="form">
     <p>
       <label for="title">Title:</label>
       <input class="italics" type="text" id="title" name="title" required />
@@ -20,6 +20,12 @@
       <label for="author">Author:</label>
       <input type="text" id="author_first" name="author.first" placeholder="First name" />
       <input type="text" id="author_first" name="author.last" placeholder="Last name" />
+    </p>
+    <p>
+      <label for="fiction">Fiction</label>
+      <input type="radio" name="category" id="fiction" value="fiction"><br>
+      <label for="non-fiction">Non-fiction</label>
+      <input type="radio" name="category" id="non-fiction" value="non-fiction"><br>
     </p>
     <p>
       Have read? Want to read?
@@ -43,6 +49,7 @@
   </form>
   </section>
   <script src="https://cdn.shoelace.style/1.0.0-beta22/shoelace.js"></script>
+  <script type="text/javascript" src="/main.js"></script>
 </body>
 
 </html>
