@@ -3,9 +3,9 @@
 
 <head>
   <meta charset="utf-8">
-  <title>New Book Form</title>
+  <title>Edit Book Form</title>
   <link rel="stylesheet" href="https://cdn.shoelace.style/1.0.0-beta22/shoelace.css">
-  <link rel="stylesheet" type="text/css" href="/styles.css" />
+  <link rel="stylesheet" type="text/css" href="/public/styles.css" />
 </head>
 
 <body>
@@ -15,17 +15,23 @@
       <h2>Edit {{title}}</h2>
       <form action="/{{_id}}/edit/" method="POST">
           <p>
-            <label for="{{title}}">{{title}}</label>
-            <input class="italics" type="text" id="{{title}}" name="{{title}}" required />
+            <label for="{{title}}" >Title</label>
+            <input class="italics" type="text" id="{{title}}" name="{{title}}" value="{{title}}" required />
           </p>
           <p>
             <label for="author">Author:</label>
-            <input type="text" id="author_first" name="author.first" placeholder="First name" />
-            <input type="text" id="author_first" name="author.last" placeholder="Last name" />
+            <input type="text" id="author_first" name="author.first" value="{{author.first}}" />
+            <input type="text" id="author_first" name="author.last" value="{{author.last}}" />
+          </p>
+          <p>
+            <label for="fiction">Fiction</label>
+            <input type="radio" name="category" id="fiction" value="fiction"><br>
+            <label for="non-fiction">Non-fiction</label>
+            <input type="radio" name="category" id="non-fiction" value="non-fiction"><br>
           </p>
           <p>
             Have read? Want to read?
-            Current selection: {{option}}
+            Current selection: {{readStatus}}
           </p>
           <select name="readStatus">
           <option value="have-read-cover-to-cover">Have read cover to cover</option>
@@ -45,13 +51,9 @@
           </p>
       </form>
     </section>
-
-
-
-
-    <!-- {{/fields}} -->
   {{/book}}
   <script src="https://cdn.shoelace.style/1.0.0-beta22/shoelace.js"></script>
+  <script type="text/javascript" src="/public/main.js">
 </body>
 
 </html>

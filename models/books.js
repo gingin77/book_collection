@@ -19,7 +19,7 @@ const bookSchema = new mongoose.Schema({
   },
   genre: {
     type: String,
-    enum: ["Novel", "Romance", "Comedy", "Suspense/Thriller", "Horror", "Mystery", "Sci-Fi", "Western", "Classic", "Mythology"]
+    enum: ["Novel", "Romance", "Comedy", "Suspense/Thriller", "Horror", "Mystery", "Sci-Fi", "Western", "Classic", "Mythology", "Children's Book", "Illustrations or Comic Book"]
   },
   deweyDecimalClassification: {
     type: String,

@@ -54,6 +54,8 @@ function renderFictionMenu(){
   let FictionOption7 = document.createElement("option")
   let FictionOption8 = document.createElement("option")
   let FictionOption9 = document.createElement("option")
+  let FictionOption10 = document.createElement("option")
+  let FictionOption11 = document.createElement("option")
 
   FictionOption0.textContent = "Novel"
   FictionOption1.textContent = "Romance"
@@ -65,6 +67,8 @@ function renderFictionMenu(){
   FictionOption7.textContent = "Western"
   FictionOption8.textContent = "Classic"
   FictionOption9.textContent = "Mythology"
+  FictionOption10.textContent = "Children's Book"
+  FictionOption11.textContent = "Illustrations or Comic Book"
 
   FictionOption0.setAttribute("value", "Novel")
   FictionOption1.setAttribute("value", "Romance")
@@ -76,6 +80,8 @@ function renderFictionMenu(){
   FictionOption7.setAttribute("value", "Western")
   FictionOption8.setAttribute("value", "Classic")
   FictionOption9.setAttribute("value", "Mythology")
+  FictionOption10.setAttribute("value", "Children's Book")
+  FictionOption11.setAttribute("value", "Illustrations or Comic Book")
 
   FictionMenu.appendChild(FictionOption0)
   FictionMenu.appendChild(FictionOption1)
@@ -87,6 +93,8 @@ function renderFictionMenu(){
   FictionMenu.appendChild(FictionOption7)
   FictionMenu.appendChild(FictionOption8)
   FictionMenu.appendChild(FictionOption9)
+  FictionMenu.appendChild(FictionOption10)
+  FictionMenu.appendChild(FictionOption11)
 
   radioFiction.insertAdjacentElement('afterend', FictionMenu)
 }
