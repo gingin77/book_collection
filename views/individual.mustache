@@ -17,9 +17,10 @@
     <div>
       <h2><span class="italics"><strong><em>{{title}}</em><strong></span> by {{author.first}} {{author.last}} {{#pages}}({{pages}} pages){{/pages}}</h2>
       <h3>{{category}}{{#genre}}, {{genre}}{{/genre}}</h3>
+
       {{#deweyDecimalSystemInfo}}
         <h3>Dewey Decimal Subject Classification: {{deweyDecimalSystemInfo.subjectClassification}}
-      </h3>
+        </h3>
       {{/deweyDecimalSystemInfo}}
       <h3>{{readStatus}}</h3>
       </br>

@@ -58,27 +58,26 @@ app.post('/:id/delete', function (req, res) {
 })
 
 app.get('/:id/edit', function (req, res) {
-  console.log(req.body)
-  console.log("^^req.body on the get");
   Book.findOne({_id: req.params.id}).then(function (book) {
     res.render('edit_book', {book: book})
   })
 })
 
 app.post('/:id/edit', function (req, res) {
-  const book = req.body
-  console.log(book)
-  // book.name = req.body.title
-  book.authorLast = req.body.author.last
-  book.authorFirst = req.body.author.first
-  book.category = req.body.category
-  book.whyIKeepIt = req.body.whyIKeepIt
-  book.readStatus = req.body.readStatus
+  const updatedbook = {
+    title: req.body.title,
+    author: {first: req.body.first,
+      last: req.body.last},
+    category: req.body.category,
+    whyIKeepIt: req.body.whyIKeepIt,
+    readStatus: req.body.readStatus
+  }
+  console.log (updatedbook)
 
-  book.save()
-  res.redirect(`/${book._id}/`)
-  console.log(book)
-  res.redirect('/')
+  Book.updateOne({ _id: req.params.id }, updatedbook)
+    .then(function () {
+      res.redirect(`/${req.params.id}/`)
+    })
 })
 
 app.get('/', function (req, res) {

@@ -15,19 +15,19 @@
       <h2>Edit {{title}}</h2>
       <form action="/{{_id}}/edit/" method="POST">
           <p>
-            <label for="{{title}}" >Title</label>
-            <input class="italics" type="text" id="{{title}}" name="{{title}}" value="{{title}}" required />
+            <label for="title" >Title</label>
+            <input class="italics" type="text" id="{{title}}" name="title" value="{{title}}" required />
           </p>
           <p>
             <label for="author">Author:</label>
-            <input type="text" id="author_first" name="author.first" value="{{author.first}}" />
-            <input type="text" id="author_first" name="author.last" value="{{author.last}}" />
+            <input type="text" name="first" value="{{author.first}}" />
+            <input type="text" name="last" value="{{author.last}}" />
           </p>
           <p>
             <label for="fiction">Fiction</label>
-            <input id="fiction" type="radio" name="category" value="fiction"><br>
+            <input id="fiction" type="radio" name="category" value="{{category}}"><br>
             <label for="non-fiction">Non-fiction</label>
-            <input id="non-fiction" type="radio" name="category" value="non-fiction"><br>
+            <input id="non-fiction" type="radio" name="category" value="{{category}}"><br>
           </p>
           <p>
             Have read? Want to read?
